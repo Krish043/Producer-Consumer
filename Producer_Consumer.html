@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Producer-Consumer Problem</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="title">
+    <h1>Producer Consumer Problem</h1>
+    <h4>Developed by Krish Gangajaliya (22BCE094)</h4>
+    <div class="user-input">
+        <label for="buffer-size">Buffer Size:</label>
+        <input type="number" id="buffer-size" min="1" max="100" value="5">
+        <button onclick="updateBufferSize()">Update Buffer Size</button>
+    </div>
+</div>
+<div id="producer-consumer">
+  <div class="producer-consumer-container" id="prod">
+    <h2>Producer</h2>
+    <button onclick="startProducing()">Start Producing</button>
+    <button onclick="stopProducing()">Stop Producing</button>
+  </div>
+  <div class="producer-consumer-container" id="bfr">
+    <div class="buffer">
+      <h3>Buffer</h3>
+      <div id="buffer-content"></div>
+    </div>
+  </div>
+  <div class="producer-consumer-container" id="cons">
+    <h2>Consumer</h2>
+    <button onclick="startConsuming()">Start Consuming</button>
+    <button onclick="stopConsuming()">Stop Consuming</button>
+  </div>
+</div>
+<script>
+  const bufferContent = document.getElementById('buffer-content');
+let bufferSize = 5; // Default buffer size
+let buffer = [];
+let bufferFullAlertShown = false;
+let bufferEmptyAlertShown = false;
+let bufferSizeUpdatedAlertShown = false;
+let produceInterval;
+let consumeInterval;
+
+function produce() {
+  if (buffer.length < bufferSize) { // Check if buffer is not full
+    const item = Math.floor(Math.random() * 100); // Generate a random item
+    buffer.push(item); // Add item to buffer
+    displayBuffer();
+    console.log("Produced:", item);
+    if (bufferFullAlertShown) {
+      bufferFullAlertShown = false;
+    }
+  } else {
+    if (!bufferFullAlertShown) {
+      alert("Buffer is full. Cannot produce.");
+      console.log("Buffer is full. Cannot produce.");
+      bufferFullAlertShown = true;
+    }
+  }
+}
+
+function consume() {
+  if (buffer.length > 0) { // Check if buffer is not empty
+    const item = buffer.shift(); // Consume item from buffer
+    displayBuffer();
+    console.log("Consumed:", item);
+    if (bufferEmptyAlertShown) {
+      bufferEmptyAlertShown = false;
+    }
+  } else {
+    if (!bufferEmptyAlertShown) {
+      alert("Buffer is empty. Cannot consume.");
+      console.log("Buffer is empty. Cannot consume.");
+      bufferEmptyAlertShown = true;
+    }
+  }
+}
+
+function displayBuffer() {
+  bufferContent.innerHTML = ''; // Clear previous buffer content
+  buffer.forEach(item => {
+    const bufferItem = document.createElement('div');
+    bufferItem.classList.add('buffer-item');
+    bufferItem.textContent = item;
+    bufferContent.appendChild(bufferItem);
+  });
+}
+
+function updateBufferSize() {
+  const newSize = parseInt(document.getElementById('buffer-size').value);
+  if (!isNaN(newSize) && newSize > 0) {
+    bufferSize = newSize;
+    buffer = []; // Reset buffer
+    displayBuffer(); // Update display
+    if (!bufferSizeUpdatedAlertShown) {
+      alert("Buffer size updated to " + newSize);
+      console.log("Buffer size updated to", newSize);
+      bufferSizeUpdatedAlertShown = true;
+    }
+  } else {
+    alert("Please enter a valid buffer size (greater than 0).");
+  }
+}
+
+function startProducing() {
+    produceInterval = setInterval(produce, 1000); // Change the interval as needed (produces every 1 second)
+}
+
+function stopProducing() {
+    clearInterval(produceInterval);
+}
+
+function startConsuming() {
+    consumeInterval = setInterval(consume, 1500); // Change the interval as needed (consumes every 1.5 seconds)
+}
+
+function stopConsuming() {
+    clearInterval(consumeInterval);
+}
+
+</script>
+<style>
+    *{
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+    body{
+        background-color: wheat;
+        max-height:100vh ;
+    }
+    #producer-consumer {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 50px;
+    }
+    .title{
+    background-color: beige;
+    margin-left: 230px;
+    margin-top: 25px;
+    border: 1px solid black;
+    box-shadow: 1px 1px 1px;
+    border-radius: 15px;
+    width: 900px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation: lft 1.5s ease;
+}
+@keyframes lft {
+    0%{
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    100%{
+        opacity: 1;
+        transform: translateX(0%);
+    }
+    
+}
+
+@keyframes ryt {
+    0%{
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    100%{
+        opacity: 1;
+        transform: translateX(0%);
+    }
+    
+}
+.producer-consumer-container {
+    background-color: beige;
+  border: 1px solid black;
+  border-radius: 15px;
+  padding: 20px;
+  width: 300px;
+  height: 130px;
+  text-align: center;
+}
+
+
+#prod{
+    animation: lft ease 2s;
+
+}
+
+#cons{
+    animation: ryt ease 2s;
+
+}
+
+button {
+  margin-top: 10px;
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.buffer{
+  margin-top: 20px;
+}
+#bfr{
+  animation: up 1s ease;
+  overflow-x: hidden;
+  height: 250px;
+  overflow-y: scroll;
+
+}
+
+@keyframes up {
+  0%{
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  100%{
+    opacity: 1;
+    transform: translateY(0%);
+  }
+  
+}
+
+.buffer h3 {
+  margin-bottom: 10px;
+}
+
+.buffer-item {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  transition: transform 0.3s ease;
+}
+
+.buffer-item:last-child {
+    margin-bottom: 0;
+    animation: lft 0.5s ease ;
+}
+
+.buffer-item:hover {
+  transform: scale(1.05);
+}
+
+.user-input {
+    margin: 20px;
+    text-align: center;
+}
+
+.user-input label {
+    font-weight: bold;
+}
+
+.user-input input[type="number"] {
+    width: 50px;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.user-input button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.user-input button:hover {
+    background-color: #0056b3;
+}
+
+</style>
+</body>
+</html>
