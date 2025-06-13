@@ -47,7 +47,7 @@ http://localhost:3000
 - Visualize semaphore and mutex values
 - Add detailed logs or steps display for better learning
 ---
-## 👨‍💻 Created with 💡 by Krrish Gangajaliya
+## 👨‍💻 Created with 💡 by Krish Gangajaliya
 📧 Email: krishgangajaliya1@gmail.com
 
 🔗 LinkedIn: linkedin.com/in/krish-gangajaliya-802b79266
