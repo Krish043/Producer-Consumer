@@ -2,7 +2,7 @@
 
 [![Live Preview](https://img.shields.io/badge/Live%20Site-Visit--Now-0aa1ff?style=for-the-badge&logo=render&logoColor=white)](https://producer-consumer.onrender.com/)
 
-A visual simulation of the classic **Producer-Consumer Problem**, built with Node.js and Socket.IO. This web-based project helps users understand multithreading concepts like synchronization and buffer management through an interactive interface.
+A visual simulation of the classic **Producer-Consumer Problem**. This web-based project helps users understand multithreading concepts like synchronization and buffer management through an interactive interface.
 
 ---
 
@@ -18,15 +18,12 @@ This project demonstrates the **Producer-Consumer synchronization problem** (bou
 - Shared buffer displayed dynamically
 - Adjustable buffer size and speed
 - Responsive UI for better accessibility
-- Built with sockets for live updates
 
 ---
 
 ## 🛠 Tech Stack
 
 - **Frontend:** HTML, CSS, JavaScript
-- **Backend:** Node.js, Express
-- **Real-time:** Socket.IO
 - **Deployment:** Render
 
 ---
@@ -36,10 +33,7 @@ This project demonstrates the **Producer-Consumer synchronization problem** (bou
 ```bash
 git clone https://github.com/Krish043/Producer-Consumer.git
 cd Producer-Consumer
-npm install
-npm start
-Then open your browser and navigate to:
-http://localhost:3000
+# Open index.html in your browser
 ```
 
 ## 📌 Future Scope
