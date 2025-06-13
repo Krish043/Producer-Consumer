@@ -48,10 +48,13 @@ http://localhost:3000
 - Add detailed logs or steps display for better learning
 ---
 ## 👨‍💻 Created with 💡 by Krrish Gangajaliya
-- 📧 Email: krishgangajaliya1@gmail.com
-- 🔗 LinkedIn: linkedin.com/in/krish-gangajaliya-802b79266
-- 🌐 Portfolio: krish-gangajaliya.vercel.app
-- 🐱 GitHub: github.com/Krish043
+📧 Email: krishgangajaliya1@gmail.com
+
+🔗 LinkedIn: linkedin.com/in/krish-gangajaliya-802b79266
+
+🌐 Portfolio: krish-gangajaliya.vercel.app
+
+🐱 GitHub: github.com/Krish043
 
 ⭐ Like this project?
 If this helped you understand OS concepts better, please give it a ⭐ and share it with others!
